@@ -7,6 +7,7 @@
 </head>
 <body>
     <a href="{{ url_for('logout') }}" id="adminButton">Çıkış</a>
+
     <div class="admin-panels">
         <div class="panel">
             <h3>Yeni Yazı Ekle</h3>
@@ -20,8 +21,6 @@
                 <textarea name="icerik" placeholder="İçerik" rows="5" required></textarea>
                 <button type="submit" name="yeni_yazi">Kaydet</button>
             </form>
-            
-            
         </div>
 
         <div class="panel">
@@ -47,6 +46,17 @@
                 <button type="submit">Kaydet</button>
             </form>
         </div>
-    </div>
-</body>
-</html>
+
+        <div class="panel">
+            <h3>Mevcut Yazılar</h3>
+            {% for yazi in yazilar %}
+                {% set i = loop.index0 %}
+                <form method="post" style="background:#f8f8f8; padding:15px; margin-bottom:10px;">
+                    <input type="hidden" name="yazi_index" value="{{ i }}">
+                    <input type="text" name="baslik" value="{{ yazi.baslik }}" required>
+                    <input type="text" name="kategori" value="{{ yazi.kategori }}" required>
+                    <textarea name="icerik" rows="4" required>{{ yazi.icerik }}</textarea>
+                    <button type="submit" name="guncelle">Güncelle</button>
+                    <button type="submit" name="sil" onclick="return confirm('Silmek istediğine emin misin?')">Sil</button>
+                </form>
+            {% endfor
