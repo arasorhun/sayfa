@@ -49,13 +49,14 @@ def admin():
 
     if request.method == 'POST':
         if 'yeni_yazi' in request.form:
-    yazilar = veri_yukle('veri/yazilar.json')
-    yazilar.append({
-        'baslik': request.form['baslik'],
-        'icerik': request.form['icerik'],
-        'kategori': request.form['kategori']
-    })
-    veri_kaydet('veri/yazilar.json', yazilar)
+            yazilar = veri_yukle('veri/yazilar.json')
+            yazilar.append({
+                'baslik': request.form['baslik'],
+                'icerik': request.form['icerik'],
+                'kategori': request.form['kategori']
+            })
+            veri_kaydet('veri/yazilar.json', yazilar)
+
 
         elif 'sol' in request.form:
             veri_kaydet('veri/sol.json', request.form['sol'].split('\n'))
