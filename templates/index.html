@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Sayfası</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('login') }}" id="adminButton">Admin Giriş</a>
+    <div class="site-container">
+        <aside class="sidebar left">
+            <div class="scroll-section">
+                {% for yazi in sol %}
+                    <p>{{ yazi }}</p>
+                {% endfor %}
+            </div>
+        </aside>
+        <main class="content">
+            {% for yazi in yazilar %}
+                <div class="yazi">
+                    <h2>{{ yazi.baslik }}</h2>
+                    <p>{{ yazi.icerik }}</p>
+                </div>
+            {% endfor %}
+        </main>
+        <aside class="sidebar right">
+            <div class="scroll-section">
+                {% for yazi in sag %}
+                    <p>{{ yazi }}</p>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

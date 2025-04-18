@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetim Paneli</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('logout') }}" id="adminButton">Çıkış</a>
+    <div class="admin-panels">
+        <div class="panel">
+            <h3>Yeni Yazı Ekle</h3>
+            <form method="post">
+                <input type="text" name="baslik" placeholder="Başlık" required>
+                <textarea name="icerik" placeholder="İçerik" rows="5" required></textarea>
+                <button type="submit" name="yeni_yazi">Kaydet</button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h3>Sol Sütun Yazıları</h3>
+            <form method="post">
+                <textarea name="sol" rows="5">{{ sol }}</textarea>
+                <button type="submit">Kaydet</button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h3>Sağ Sütun Yazıları</h3>
+            <form method="post">
+                <textarea name="sag" rows="5">{{ sag }}</textarea>
+                <button type="submit">Kaydet</button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h3>Kategoriler</h3>
+            <form method="post">
+                <textarea name="kategori" rows="5">{{ kategoriler }}</textarea>
+                <button type="submit">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

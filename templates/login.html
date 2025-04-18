@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Giriş</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="login-box">
+        <h2>Giriş Yap</h2>
+        <form method="post">
+            <input type="password" name="sifre" placeholder="Şifre" required>
+            <button type="submit">Giriş</button>
+        </form>
+    </div>
+</body>
+</html>
