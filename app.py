@@ -3,7 +3,7 @@ import json
 import os
 
 app = Flask(__name__)
-app.secret_key = 'gizli_kod'  # oturum yönetimi için
+app.secret_key = 'gizli_kod'
 
 def veri_yukle(dosya):
     if not os.path.exists(dosya):
@@ -65,9 +65,5 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(import os
-
-if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
-)
