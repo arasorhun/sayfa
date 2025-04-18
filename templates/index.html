@@ -31,5 +31,11 @@
             </div>
         </aside>
     </div>
+    <nav class="kategori-nav">
+        {% for kat in kategoriler %}
+            <a href="{{ url_for('kategori_yazilari', isim=kat) }}">{{ kat }}</a>
+        {% endfor %}
+    </nav>
+    
 </body>
 </html>

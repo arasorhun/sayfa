@@ -24,6 +24,16 @@ def index():
     kategoriler = veri_yukle('veri/kategoriler.json')
     return render_template('index.html', yazilar=yazilar, sol=sol, sag=sag, kategoriler=kategoriler)
 
+@app.route('/kategori/<isim>')
+def kategori_yazilari(isim):
+    yazilar = veri_yukle('veri/yazilar.json')
+    yazilar = [y for y in yazilar if y.get("kategori") == isim]
+    sol = veri_yukle('veri/sol.json')
+    sag = veri_yukle('veri/sag.json')
+    kategoriler = veri_yukle('veri/kategoriler.json')
+    return render_template('index.html', yazilar=yazilar, sol=sol, sag=sag, kategoriler=kategoriler)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -39,12 +49,14 @@ def admin():
 
     if request.method == 'POST':
         if 'yeni_yazi' in request.form:
-            yazilar = veri_yukle('veri/yazilar.json')
-            yazilar.append({
-                'baslik': request.form['baslik'],
-                'icerik': request.form['icerik']
-            })
-            veri_kaydet('veri/yazilar.json', yazilar)
+    yazilar = veri_yukle('veri/yazilar.json')
+    yazilar.append({
+        'baslik': request.form['baslik'],
+        'icerik': request.form['icerik'],
+        'kategori': request.form['kategori']
+    })
+    veri_kaydet('veri/yazilar.json', yazilar)
+
         elif 'sol' in request.form:
             veri_kaydet('veri/sol.json', request.form['sol'].split('\n'))
         elif 'sag' in request.form:
