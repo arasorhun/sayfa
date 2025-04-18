@@ -7,6 +7,14 @@
 </head>
 <body>
     <a href="{{ url_for('login') }}" id="adminButton">Admin Giriş</a>
+
+    <nav class="kategori-menu">
+        <strong>Kategoriler:</strong>
+        {% for kat in kategoriler %}
+            <a href="{{ url_for('kategori_yazilari', isim=kat) }}">{{ kat }}</a>
+        {% endfor %}
+    </nav>
+
     <div class="site-container">
         <aside class="sidebar left">
             <div class="scroll-section">
@@ -15,22 +23,18 @@
                 {% endfor %}
             </div>
         </aside>
+
         <main class="content">
-            <h3>Mevcut Yazılar</h3>
-            {% for i, yazi in enumerate(yazilar) %}
-                <div class="panel" style="background:#f8f8f8;">
-                    <form method="post">
-                        <input type="hidden" name="yazi_index" value="{{ i }}">
-                        <input type="text" name="baslik" value="{{ yazi.baslik }}" required>
-                        <input type="text" name="kategori" value="{{ yazi.kategori }}" required>
-                        <textarea name="icerik" rows="4" required>{{ yazi.icerik }}</textarea>
-                        <button type="submit" name="guncelle">Güncelle</button>
-                        <button type="submit" name="sil" onclick="return confirm('Silmek istediğine emin misin?')">Sil</button>
-                    </form>
+            {% for yazi in yazilar %}
+                {% set i = loop.index0 %}
+                <div class="yazi">
+                    <h2>{{ yazi.baslik }}</h2>
+                    <p><em>{{ yazi.kategori }}</em></p>
+                    <p>{{ yazi.icerik }}</p>
                 </div>
             {% endfor %}
-
         </main>
+
         <aside class="sidebar right">
             <div class="scroll-section">
                 {% for yazi in sag %}
@@ -39,17 +43,5 @@
             </div>
         </aside>
     </div>
-    <nav class="kategori-nav">
-        {% for kat in kategoriler %}
-            <a href="{{ url_for('kategori_yazilari', isim=kat) }}">{{ kat }}</a>
-        {% endfor %}
-    </nav>
-    <nav class="kategori-menu">
-        <strong>Kategoriler:</strong>
-        {% for kat in kategoriler %}
-            <a href="{{ url_for('kategori_yazilari', isim=kat) }}">{{ kat }}</a>
-        {% endfor %}
-    </nav>
-    
 </body>
 </html>
