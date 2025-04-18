@@ -57,14 +57,47 @@ def admin():
             })
             veri_kaydet('veri/yazilar.json', yazilar)
 
+        elif 'sil' in request.form:
+            yazilar = veri_yukle('veri/yazilar.json')
+            index = int(request.form['yazi_index'])
+            if 0 <= index < len(yazilar):
+                yazilar.pop(index)
+                veri_kaydet('veri/yazilar.json', yazilar)
+
+        elif 'guncelle' in request.form:
+            yazilar = veri_yukle('veri/yazilar.json')
+            index = int(request.form['yazi_index'])
+            if 0 <= index < len(yazilar):
+                yazilar[index] = {
+                    'baslik': request.form['baslik'],
+                    'icerik': request.form['icerik'],
+                    'kategori': request.form['kategori']
+                }
+                veri_kaydet('veri/yazilar.json', yazilar)
 
         elif 'sol' in request.form:
             veri_kaydet('veri/sol.json', request.form['sol'].split('\n'))
+
         elif 'sag' in request.form:
             veri_kaydet('veri/sag.json', request.form['sag'].split('\n'))
+
         elif 'kategori' in request.form:
             veri_kaydet('veri/kategoriler.json', request.form['kategori'].split('\n'))
+
         return redirect(url_for('admin'))
+
+
+elif 'guncelle' in request.form:
+    yazilar = veri_yukle('veri/yazilar.json')
+    index = int(request.form['yazi_index'])
+    if 0 <= index < len(yazilar):
+        yazilar[index] = {
+            'baslik': request.form['baslik'],
+            'icerik': request.form['icerik'],
+            'kategori': request.form['kategori']
+        }
+        veri_kaydet('veri/yazilar.json', yazilar)
+
 
     yazilar = veri_yukle('veri/yazilar.json')
     sol = "\n".join(veri_yukle('veri/sol.json'))

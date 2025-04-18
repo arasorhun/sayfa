@@ -72,3 +72,15 @@ body {
     padding: 20px;
     margin-bottom: 20px;
 }
+
+.kategori-menu {
+    text-align: center;
+    padding: 10px;
+    background: #eee;
+}
+
+.kategori-menu a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
