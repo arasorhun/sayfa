@@ -9,7 +9,6 @@
     <a href="{{ url_for('login') }}" id="adminButton">Admin Giriş</a>
 
     <nav class="kategori-menu">
-        <strong>Kategoriler:</strong>
         {% for kat in kategoriler %}
             <a href="{{ url_for('kategori_yazilari', isim=kat) }}">{{ kat }}</a>
         {% endfor %}
