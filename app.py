@@ -49,11 +49,15 @@ def admin():
     if request.method == 'POST':
         if 'yeni_yazi' in request.form:
             yazilar = veri_yukle('veri/yazilar.json')
-            yazilar.append({
+            yeni_yazi = {
                 'baslik': request.form['baslik'],
                 'icerik': request.form['icerik'],
                 'kategori': request.form['kategori']
-            })
+            }
+            ozet = request.form.get('ozet')
+            if ozet:
+                yeni_yazi['ozet'] = ozet
+            yazilar.append(yeni_yazi)
             veri_kaydet('veri/yazilar.json', yazilar)
 
         elif 'sil' in request.form:
@@ -67,12 +71,17 @@ def admin():
             yazilar = veri_yukle('veri/yazilar.json')
             index = int(request.form['yazi_index'])
             if 0 <= index < len(yazilar):
-                yazilar[index] = {
+                guncel = {
                     'baslik': request.form['baslik'],
                     'icerik': request.form['icerik'],
                     'kategori': request.form['kategori']
                 }
+                ozet = request.form.get('ozet')
+                if ozet:
+                    guncel['ozet'] = ozet
+                yazilar[index] = guncel
                 veri_kaydet('veri/yazilar.json', yazilar)
+
 
         elif 'sol' in request.form:
             veri_kaydet('veri/sol.json', request.form['sol'].split('\n'))

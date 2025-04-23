@@ -18,9 +18,10 @@
                         <option value="{{ kat }}">{{ kat }}</option>
                     {% endfor %}
                 </select>
+                <textarea name="ozet" placeholder="Özet (isteğe bağlı)" rows="2"></textarea>
                 <textarea name="icerik" placeholder="İçerik" rows="5" required></textarea>
                 <button type="submit" name="yeni_yazi">Kaydet</button>
-            </form>
+            </form>            
         </div>
 
         <div class="panel">
@@ -56,6 +57,7 @@
                     <input type="text" name="baslik" value="{{ yazi.baslik }}" required>
                     <input type="text" name="kategori" value="{{ yazi.kategori }}" required>
                     <textarea name="icerik" rows="4" required>{{ yazi.icerik }}</textarea>
+                    <textarea name="ozet" rows="2" placeholder="Özet (isteğe bağlı)">{{ yazi.ozet }}</textarea>
                     <button type="submit" name="guncelle">Güncelle</button>
                     <button type="submit" name="sil" onclick="return confirm('Silmek istediğine emin misin?')">Sil</button>
                 </form>
