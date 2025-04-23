@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Sayfası</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('login') }}" id="adminButton">Admin Giriş</a>
+
+    <nav class="kategori-menu">
+        <strong>Kategoriler:</strong>
+        {% for kat in kategoriler %}
+            <a href="{{ url_for('kategori_yazilari', isim=kat) }}">{{ kat }}</a>
+        {% endfor %}
+    </nav>
+
+    <div class="site-container">
+        <aside class="sidebar left">
+            <div class="scroll-section">
+                {% for yazi in sol %}
+                    <p>{{ yazi }}</p>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <main class="content">
+            {% for yazi in yazilar %}
+                <div class="yazi">
+                    <h2>{{ yazi.baslik }}</h2>
+                    <p><em>{{ yazi.kategori }}</em></p>
+                    <p>{{ yazi.icerik }}</p>
+                </div>
+            {% endfor %}
+        </main>
+
+        <aside class="sidebar right">
+            <div class="scroll-section">
+                {% for yazi in sag %}
+                    <p>{{ yazi }}</p>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

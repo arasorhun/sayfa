@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "baslik": "İlk Yazı",
+        "icerik": "Bu, ilk örnek yazıdır.",
+        "kategori": "Genel"
+    }
+]
